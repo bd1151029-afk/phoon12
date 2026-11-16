@@ -1,417 +1,342 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" class="scroll-smooth">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>張國榮 Leslie Zhang | 個人主頁</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+    <title>張國榮 Leslie | 個人主頁</title>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 圖示 (純 CSS，無 JavaScript) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Noto Sans TC', 'sans-serif'],
-                    },
-                    colors: {
-                        brandIndigo: '#4F46E5',
-                        brandSky: '#06B6D4',
-                        brandRose: '#F43F5E',
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background-color: #FAFAFC;
-            color: #1E293B;
             font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #FFF7ED 0%, #FDF2F8 50%, #E0F2FE 100%);
+            color: #1E293B;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.25rem;
+            line-height: 1.6;
         }
 
-        /* Glassmorphism Header Bar */
-        .glass-pill {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+        .container {
+            width: 100%;
+            max-width: 680px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
         }
 
-        /* Glow Ring Animation for Photo Container */
-        .photo-ring {
-            position: relative;
-        }
-        .photo-ring::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 2rem;
-            background: linear-gradient(135deg, #4F46E5, #06B6D4, #F43F5E);
-            opacity: 0.8;
-            filter: blur(10px);
-            transition: all 0.4s ease;
-            z-index: 0;
-        }
-        .photo-ring:hover::before {
-            opacity: 1;
-            filter: blur(16px);
+        .card {
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 28px;
+            padding: 1.85rem;
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 18px 36px -14px rgba(249, 115, 22, 0.14),
+                        0 10px 20px -10px rgba(14, 165, 233, 0.12);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 7px;
+        /* 個人簡介與照片區 */
+        .profile-card {
+            display: flex;
+            align-items: center;
+            gap: 1.85rem;
         }
-        ::-webkit-scrollbar-track {
-            background: #FAFAFC;
+
+        .photo-frame {
+            flex-shrink: 0;
+            width: 160px;
+            height: 160px;
+            border-radius: 26px;
+            padding: 5px;
+            background: linear-gradient(135deg, #FF6B6B, #FFA94D, #38BDF8);
+            box-shadow: 0 12px 24px -8px rgba(255, 107, 107, 0.45);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #CBD5E1;
-            border-radius: 9999px;
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 21px;
+            display: block;
+            background-color: #FFF1F2;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6366F1;
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #FFEDD5, #FCE7F3);
+            color: #EA580C;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            margin-bottom: 0.6rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #0F172A;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.7rem;
+        }
+
+        h1 span {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #F97316;
+            margin-left: 0.3rem;
+        }
+
+        .motto {
+            background: linear-gradient(90deg, #FFF7ED, #F0F9FF);
+            border-left: 4px solid #FF6B6B;
+            padding: 0.7rem 1rem;
+            border-radius: 0 14px 14px 0;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: #334155;
+        }
+
+        /* 雙欄：技能與興趣 */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #0F172A;
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 0.9rem;
+            border-radius: 14px;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .skill-1 { background: #EEF2FF; color: #4F46E5; }
+        .skill-2 { background: #E0F2FE; color: #0284C7; }
+        .skill-3 { background: #FFE4E6; color: #E11D48; }
+
+        .skill-item small {
+            font-weight: 500;
+            opacity: 0.85;
+            font-size: 0.76rem;
+        }
+
+        .hobby-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            height: calc(100% - 2.2rem);
+        }
+
+        .hobby-box {
+            border-radius: 18px;
+            padding: 1rem 0.75rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .hobby-movie { background: #FEF3C7; color: #D97706; }
+        .hobby-art   { background: #D1FAE5; color: #059669; }
+
+        .hobby-box i {
+            font-size: 1.35rem;
+        }
+
+        /* 聯繫方式 */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+        }
+
+        .contact-item {
+            text-decoration: none;
+            padding: 0.9rem;
+            border-radius: 18px;
+            border: 1.5px solid transparent;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.12);
+        }
+
+        .contact-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .contact-value {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #1E293B;
+            word-break: break-all;
+            user-select: all;
+        }
+
+        .c-email { background: #EEF2FF; border-color: #E0E7FF; }
+        .c-email .contact-label { color: #4F46E5; }
+
+        .c-line { background: #ECFDF5; border-color: #D1FAE5; }
+        .c-line .contact-label { color: #059669; }
+
+        .c-ig { background: linear-gradient(135deg, #FFF1F2, #FFF7ED); border-color: #FFE4E6; }
+        .c-ig .contact-label { color: #E11D48; }
+
+        footer {
+            text-align: center;
+            font-size: 0.78rem;
+            color: #64748B;
+            margin-top: 0.4rem;
+        }
+
+        @media (max-width: 600px) {
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.2rem;
+            }
+            .motto {
+                border-left: none;
+                border-top: 3px solid #FF6B6B;
+                border-radius: 14px;
+            }
+            .grid-2, .contact-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body class="relative min-h-screen text-slate-800 selection:bg-indigo-500 selection:text-white">
+<body>
 
-    <!-- Ambient Light Blobs Background Effect -->
-    <div class="fixed top-0 left-1/3 w-96 h-96 bg-indigo-200/50 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-    <div class="fixed bottom-10 right-1/3 w-96 h-96 bg-rose-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
-    <div class="fixed top-1/2 left-10 w-80 h-80 bg-sky-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <main class="container">
 
-    <!-- Navigation Bar -->
-    <header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-2xl">
-        <nav class="glass-pill rounded-full px-5 py-3 flex items-center justify-between shadow-lg shadow-slate-200/50">
-            <!-- Brand -->
-            <a href="#profile" class="flex items-center space-x-2.5 group">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-600 via-sky-500 to-rose-400 flex items-center justify-center text-white font-extrabold text-xs shadow-md group-hover:rotate-12 transition-transform">
-                    張
-                </div>
-                <span class="font-bold text-slate-900 text-sm tracking-wide">張國榮</span>
-            </a>
-
-            <!-- Navigation Links -->
-            <div class="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm font-semibold text-slate-600">
-                <a href="#profile" class="hover:text-indigo-600 transition-colors">關於</a>
-                <a href="#skills" class="hover:text-indigo-600 transition-colors">技能與興趣</a>
-                <a href="#contact" class="hover:text-indigo-600 transition-colors">聯繫</a>
+        <!-- 1. 個人照片與簡介 -->
+        <section class="card profile-card">
+            <div class="photo-frame">
+                <!-- 👇 把下方的 src 換成你的照片檔名（例如 me.jpg）或圖片網址即可 -->
+                <img src="https://placehold.co/400x400/FF8A65/FFFFFF?text=My+Photo" alt="張國榮 個人照片">
             </div>
-        </nav>
-    </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-3xl mx-auto px-5 pt-28 pb-16 space-y-12">
-
-        <!-- SECTION 1: PROFILE & PHOTO SPOT -->
-        <section id="profile" class="pt-4">
-            <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-xl shadow-slate-200/60 flex flex-col sm:flex-row items-center gap-8 text-center sm:text-left">
-                
-                <!-- PHOTO CONTAINER (Click to Preview Local Photo) -->
-                <div class="shrink-0">
-                    <div class="photo-ring group relative cursor-pointer" onclick="document.getElementById('photoInput').click()" title="點擊上傳或更換您的個人照片" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){document.getElementById('photoInput').click();}">
-                        <div class="relative z-10 w-40 h-40 sm:w-44 sm:h-44 rounded-2xl overflow-hidden bg-slate-100 border-2 border-white shadow-md flex items-center justify-center">
-                            <!-- Avatar Display Image -->
-                            <img id="profileImage" 
-                                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=500&auto=format&fit=crop" 
-                                 alt="張國榮 個人照片" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                 onerror="this.onerror=null; this.src='https://placehold.co/400x400/4F46E5/FFFFFF?text=Leslie+Zhang';" />
-                            
-                            <!-- Hover Overlay -->
-                            <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-xs font-bold gap-1 backdrop-blur-[2px]">
-                                <i class="fa-solid fa-camera text-lg"></i>
-                                <span>更換個人照片</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Hidden Input for Uploading Local Photo -->
-                    <input type="file" id="photoInput" accept="image/*" class="hidden" onchange="previewPhoto(event)">
-                    <div class="text-[11px] text-slate-400 text-center mt-2 font-medium">💡 點擊照片可即時換圖預覽</div>
-                </div>
-
-                <!-- Bio Description -->
-                <div class="space-y-3.5 flex-1">
-                    
-                    <!-- Department Badge -->
-                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold">
-                        <span class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
-                        <span>開南大學 · 資訊管理學系</span>
-                    </div>
-
-                    <!-- Name -->
-                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                        張國榮 <span class="text-sm font-semibold text-slate-400 ml-1">Leslie</span>
-                    </h1>
-
-                    <!-- Motto Box -->
-                    <div class="p-3.5 rounded-2xl bg-gradient-to-r from-indigo-50/70 via-sky-50/70 to-rose-50/70 border border-indigo-100/60">
-                        <p class="text-sm sm:text-base font-bold text-slate-700 italic">
-                            「喜歡簡單生活，也喜歡認真對待每一件事。」
-                        </p>
-                    </div>
-
-                    <!-- Feature Tags -->
-                    <div class="flex flex-wrap justify-center sm:justify-start gap-2 pt-1">
-                        <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">💻 資管背景</span>
-                        <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">✍️ 內容編輯</span>
-                        <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">🎨 繪畫與影音</span>
-                    </div>
-
-                </div>
-
+            <div class="profile-info">
+                <div class="badge">✨ 開南大學 · 資訊管理學系</div>
+                <h1>張國榮 <span>Leslie</span></h1>
+                <p class="motto">「喜歡簡單生活，也喜歡認真對待每一件事。」</p>
             </div>
         </section>
 
-        <!-- SECTION 2: SKILLS & HOBBIES -->
-        <section id="skills" class="space-y-4">
-            
-            <div class="flex items-center space-x-2">
-                <div class="w-2.5 h-6 bg-gradient-to-b from-indigo-500 to-sky-500 rounded-full"></div>
-                <h2 class="text-lg font-black text-slate-900 tracking-tight">技能專長 & 生活興趣</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                <!-- Skills Card -->
-                <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-xl shadow-slate-200/40 space-y-3">
-                    <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-                        <span class="font-extrabold text-sm text-slate-900 flex items-center gap-2">
-                            <i class="fa-solid fa-code text-indigo-500"></i> 專業技能
-                        </span>
-                        <span class="text-[10px] font-bold text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded-full">SKILLS</span>
+        <!-- 2. 技能與興趣 -->
+        <section class="grid-2">
+            <div class="card">
+                <h2 class="section-title"><i class="fa-solid fa-bolt" style="color:#F97316;"></i> 專業技能</h2>
+                <div class="skill-list">
+                    <div class="skill-item skill-1">
+                        <span>💻 寫代碼</span>
+                        <small>程式開發</small>
                     </div>
-
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50">
-                            <div class="flex items-center space-x-2.5">
-                                <div class="w-7 h-7 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold">1</div>
-                                <span class="font-bold text-xs text-slate-800">寫代碼 (Coding)</span>
-                            </div>
-                            <span class="text-[11px] text-indigo-600 font-semibold">網頁邏輯 / 程式開發</span>
-                        </div>
-
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50">
-                            <div class="flex items-center space-x-2.5">
-                                <div class="w-7 h-7 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center text-xs font-bold">2</div>
-                                <span class="font-bold text-xs text-slate-800">內容編輯 (Editing)</span>
-                            </div>
-                            <span class="text-[11px] text-sky-600 font-semibold">文字潤飾 / 企劃排版</span>
-                        </div>
-
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50">
-                            <div class="flex items-center space-x-2.5">
-                                <div class="w-7 h-7 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center text-xs font-bold">3</div>
-                                <span class="font-bold text-xs text-slate-800">華語與溝通 (Mandarin)</span>
-                            </div>
-                            <span class="text-[11px] text-rose-600 font-semibold">表達傳達 / 團隊協作</span>
-                        </div>
+                    <div class="skill-item skill-2">
+                        <span>✍️ 內容編輯</span>
+                        <small>企劃排版</small>
+                    </div>
+                    <div class="skill-item skill-3">
+                        <span>💬 華語溝通</span>
+                        <small>團隊協作</small>
                     </div>
                 </div>
-
-                <!-- Interests Card -->
-                <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-xl shadow-slate-200/40 space-y-3 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-3">
-                            <span class="font-extrabold text-sm text-slate-900 flex items-center gap-2">
-                                <i class="fa-solid fa-icons text-rose-500"></i> 個人興趣
-                            </span>
-                            <span class="text-[10px] font-bold text-rose-500 bg-rose-50 px-2 py-0.5 rounded-full">HOBBIES</span>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="p-3.5 rounded-2xl bg-slate-50 hover:bg-amber-50/70 transition-colors text-center space-y-1.5">
-                                <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mx-auto text-sm">
-                                    <i class="fa-solid fa-film"></i>
-                                </div>
-                                <div class="font-bold text-xs text-slate-800">看電影</div>
-                                <div class="text-[10px] text-slate-400">感受光影與故事</div>
-                            </div>
-
-                            <div class="p-3.5 rounded-2xl bg-slate-50 hover:bg-emerald-50/70 transition-colors text-center space-y-1.5">
-                                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-sm">
-                                    <i class="fa-solid fa-palette"></i>
-                                </div>
-                                <div class="font-bold text-xs text-slate-800">畫幅畫</div>
-                                <div class="text-[10px] text-slate-400">記錄色彩與心情</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center pt-2">
-                        <span class="text-[11px] text-slate-400 font-medium">認真對待每一個生活創作瞬間 ✨</span>
-                    </div>
-                </div>
-
             </div>
 
+            <div class="card">
+                <h2 class="section-title"><i class="fa-solid fa-heart" style="color:#F43F5E;"></i> 生活興趣</h2>
+                <div class="hobby-grid">
+                    <div class="hobby-box hobby-movie">
+                        <i class="fa-solid fa-film"></i>
+                        <span>看電影</span>
+                    </div>
+                    <div class="hobby-box hobby-art">
+                        <i class="fa-solid fa-palette"></i>
+                        <span>畫幅畫</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- SECTION 3: CONTACT SECTION -->
-        <section id="contact" class="space-y-4">
-            
-            <div class="flex items-center space-x-2">
-                <div class="w-2.5 h-6 bg-gradient-to-b from-sky-500 to-rose-500 rounded-full"></div>
-                <h2 class="text-lg font-black text-slate-900 tracking-tight">聯繫方式</h2>
+        <!-- 3. 聯繫方式 -->
+        <section class="card">
+            <h2 class="section-title"><i class="fa-solid fa-paper-plane" style="color:#0EA5E9;"></i> 聯繫方式</h2>
+            <div class="contact-grid">
+                <a href="mailto:magth7777@gmail.com" class="contact-item c-email">
+                    <span class="contact-label"><i class="fa-regular fa-envelope"></i> Email</span>
+                    <span class="contact-value">magth7777@gmail.com</span>
+                </a>
+
+                <div class="contact-item c-line">
+                    <span class="contact-label"><i class="fa-brands fa-line"></i> Line ID</span>
+                    <span class="contact-value">0809685436</span>
+                </div>
+
+                <a href="https://instagram.com/xicoz_eoz" target="_blank" rel="noopener noreferrer" class="contact-item c-ig">
+                    <span class="contact-label"><i class="fa-brands fa-instagram"></i> Instagram</span>
+                    <span class="contact-value">@xicoz_eoz ↗</span>
+                </a>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                
-                <!-- Email Card -->
-                <div class="bg-white rounded-3xl p-4 border border-slate-100 shadow-md shadow-slate-200/40 flex flex-col justify-between space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm">
-                            <i class="fa-regular fa-envelope"></i>
-                        </div>
-                        <span class="text-[10px] font-mono text-slate-400">EMAIL</span>
-                    </div>
-                    <div>
-                        <div class="text-[10px] text-slate-400 font-semibold">電子郵件</div>
-                        <div class="text-xs font-bold text-slate-800 break-all select-all">magth7777@gmail.com</div>
-                    </div>
-                    <button type="button" onclick="copyText('magth7777@gmail.com', 'Email 已順利複製！')" 
-                            class="w-full py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-600 hover:text-white text-indigo-600 font-bold text-xs transition-colors">
-                        複製 Email
-                    </button>
-                </div>
-
-                <!-- Line Card -->
-                <div class="bg-white rounded-3xl p-4 border border-slate-100 shadow-md shadow-slate-200/40 flex flex-col justify-between space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
-                            <i class="fa-brands fa-line"></i>
-                        </div>
-                        <span class="text-[10px] font-mono text-slate-400">LINE</span>
-                    </div>
-                    <div>
-                        <div class="text-[10px] text-slate-400 font-semibold">Line ID</div>
-                        <div class="text-xs font-bold text-slate-800 select-all">0809685436</div>
-                    </div>
-                    <button type="button" onclick="copyText('0809685436', 'Line ID 已複製！')" 
-                            class="w-full py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-600 font-bold text-xs transition-colors">
-                        複製 Line ID
-                    </button>
-                </div>
-
-                <!-- Instagram Card -->
-                <div class="bg-white rounded-3xl p-4 border border-slate-100 shadow-md shadow-slate-200/40 flex flex-col justify-between space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-sm">
-                            <i class="fa-brands fa-instagram"></i>
-                        </div>
-                        <span class="text-[10px] font-mono text-slate-400">INSTAGRAM</span>
-                    </div>
-                    <div>
-                        <div class="text-[10px] text-slate-400 font-semibold">Instagram</div>
-                        <div class="text-xs font-bold text-slate-800">@xicoz_eoz</div>
-                    </div>
-                    <a href="https://instagram.com/xicoz_eoz" target="_blank" rel="noopener noreferrer" 
-                       class="w-full py-1.5 rounded-xl bg-gradient-to-r from-rose-500 to-amber-500 text-white font-bold text-xs text-center block hover:opacity-90 transition-opacity shadow-sm">
-                        前往 IG <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                    </a>
-                </div>
-
-            </div>
-
         </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="py-6 text-center text-xs text-slate-400 border-t border-slate-200/50">
-        <p>© <span id="year"></span> 張國榮 Leslie Zhang · 開南大學資管系</p>
+    <footer>
+        © 2026 張國榮 Leslie Zhang · 開南大學資管系
     </footer>
 
-    <!-- Toast Notification Popup -->
-    <div id="toast" aria-live="polite" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="bg-slate-900 text-white px-4 py-2.5 rounded-2xl flex items-center space-x-2.5 shadow-xl">
-            <div class="w-5 h-5 rounded-full bg-emerald-500 text-slate-900 flex items-center justify-center text-[10px] font-black">
-                ✓
-            </div>
-            <span id="toastMsg" class="text-xs font-semibold">複製成功！</span>
-        </div>
-    </div>
-
-    <!-- JavaScript Logic -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Auto Update Footer Year
-            const yearEl = document.getElementById('year');
-            if (yearEl) yearEl.textContent = new Date().getFullYear();
-        });
-
-        // Local Image Preview Upload Logic
-        function previewPhoto(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.getElementById('profileImage');
-                    if (img) img.src = e.target.result;
-                    showToast('已更新個人照片預覽！');
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Copy Helper & Toast
-        let toastTimer;
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMsg');
-            if (!toast || !toastMsg) return;
-
-            toastMsg.textContent = msg;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        function copyText(text, successMessage) {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast(successMessage);
-                }).catch(() => {
-                    fallbackCopy(text, successMessage);
-                });
-            } else {
-                fallbackCopy(text, successMessage);
-            }
-        }
-
-        function fallbackCopy(text, successMessage) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.opacity = "0";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                showToast(successMessage);
-            } catch (err) {
-                showToast("複製失敗，請手動複製");
-            }
-            document.body.removeChild(textArea);
-        }
-    </script>
 </body>
 </html>
