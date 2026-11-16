@@ -4,15 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>張國榮 Leslie | 個人主頁</title>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
-
-    <!-- FontAwesome 圖示 (純 CSS，無 JavaScript) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         * {
             box-sizing: border-box;
@@ -23,320 +17,131 @@
         body {
             font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(135deg, #FFF7ED 0%, #FDF2F8 50%, #E0F2FE 100%);
+            background: linear-gradient(135deg, #FFEDD5 0%, #FCE7F3 50%, #E0F2FE 100%);
             color: #1E293B;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2rem 1.25rem;
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 680px;
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
+            padding: 1.5rem;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.94);
-            border-radius: 28px;
-            padding: 1.85rem;
+            width: 100%;
+            max-width: 440px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 32px;
+            padding: 2.25rem 1.75rem;
+            text-align: center;
             border: 2px solid #FFFFFF;
-            box-shadow: 0 18px 36px -14px rgba(249, 115, 22, 0.14),
-                        0 10px 20px -10px rgba(14, 165, 233, 0.12);
+            box-shadow: 0 20px 45px -15px rgba(249, 115, 22, 0.18),
+                        0 10px 25px -10px rgba(14, 165, 233, 0.15);
         }
 
-        /* 個人簡介與照片區 */
-        .profile-card {
-            display: flex;
-            align-items: center;
-            gap: 1.85rem;
-        }
-
-        .photo-frame {
-            flex-shrink: 0;
-            width: 160px;
-            height: 160px;
-            border-radius: 26px;
+        /* 個人照片位置 */
+        .photo-wrap {
+            width: 136px;
+            height: 136px;
+            margin: 0 auto 1.1rem;
             padding: 5px;
+            border-radius: 50%;
             background: linear-gradient(135deg, #FF6B6B, #FFA94D, #38BDF8);
-            box-shadow: 0 12px 24px -8px rgba(255, 107, 107, 0.45);
+            box-shadow: 0 10px 24px -6px rgba(255, 107, 107, 0.45);
         }
 
-        .photo-frame img {
+        .photo-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 21px;
+            border-radius: 50%;
             display: block;
-            background-color: #FFF1F2;
+            background: #FFF7ED;
         }
 
-        .profile-info {
-            flex: 1;
-        }
-
-        .badge {
+        .dept {
             display: inline-block;
             background: linear-gradient(90deg, #FFEDD5, #FCE7F3);
             color: #EA580C;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 700;
-            padding: 0.35rem 0.9rem;
+            padding: 0.3rem 0.85rem;
             border-radius: 999px;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.5rem;
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 1.85rem;
             font-weight: 900;
             color: #0F172A;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.6rem;
         }
 
         h1 span {
             font-size: 1rem;
             font-weight: 700;
             color: #F97316;
-            margin-left: 0.3rem;
+            margin-left: 0.25rem;
         }
 
         .motto {
-            background: linear-gradient(90deg, #FFF7ED, #F0F9FF);
-            border-left: 4px solid #FF6B6B;
-            padding: 0.7rem 1rem;
-            border-radius: 0 14px 14px 0;
+            font-size: 0.9rem;
             font-weight: 700;
-            font-size: 0.92rem;
-            color: #334155;
+            color: #475569;
+            background: #FFF7ED;
+            padding: 0.65rem 1rem;
+            border-radius: 16px;
+            margin-bottom: 1.35rem;
         }
 
-        /* 雙欄：技能與興趣 */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-        }
-
-        .section-title {
-            font-size: 1rem;
-            font-weight: 900;
-            color: #0F172A;
-            margin-bottom: 0.9rem;
+        /* 技能與興趣精簡標籤 */
+        .tags {
             display: flex;
-            align-items: center;
-            gap: 0.45rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .skill-list {
+        .tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+        }
+
+        .t-indigo { background: #EEF2FF; color: #4F46E5; }
+        .t-sky    { background: #E0F2FE; color: #0284C7; }
+        .t-rose   { background: #FFE4E6; color: #E11D48; }
+        .t-amber  { background: #FEF3C7; color: #D97706; }
+        .t-green  { background: #D1FAE5; color: #059669; }
+
+        /* 聯繫按鈕列 */
+        .links {
             display: flex;
             flex-direction: column;
             gap: 0.6rem;
         }
 
-        .skill-item {
+        .link-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.6rem 0.9rem;
-            border-radius: 14px;
-            font-size: 0.88rem;
-            font-weight: 700;
-        }
-
-        .skill-1 { background: #EEF2FF; color: #4F46E5; }
-        .skill-2 { background: #E0F2FE; color: #0284C7; }
-        .skill-3 { background: #FFE4E6; color: #E11D48; }
-
-        .skill-item small {
-            font-weight: 500;
-            opacity: 0.85;
-            font-size: 0.76rem;
-        }
-
-        .hobby-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-            height: calc(100% - 2.2rem);
-        }
-
-        .hobby-box {
-            border-radius: 18px;
-            padding: 1rem 0.75rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .hobby-movie { background: #FEF3C7; color: #D97706; }
-        .hobby-art   { background: #D1FAE5; color: #059669; }
-
-        .hobby-box i {
-            font-size: 1.35rem;
-        }
-
-        /* 聯繫方式 */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.8rem;
-        }
-
-        .contact-item {
             text-decoration: none;
-            padding: 0.9rem;
-            border-radius: 18px;
-            border: 1.5px solid transparent;
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
+            padding: 0.75rem 1.1rem;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .contact-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.12);
+        .link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px -6px rgba(0, 0, 0, 0.12);
         }
 
-        .contact-label {
-            font-size: 0.75rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-
-        .contact-value {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #1E293B;
-            word-break: break-all;
+        .link-btn span:last-child {
             user-select: all;
         }
 
-        .c-email { background: #EEF2FF; border-color: #E0E7FF; }
-        .c-email .contact-label { color: #4F46E5; }
-
-        .c-line { background: #ECFDF5; border-color: #D1FAE5; }
-        .c-line .contact-label { color: #059669; }
-
-        .c-ig { background: linear-gradient(135deg, #FFF1F2, #FFF7ED); border-color: #FFE4E6; }
-        .c-ig .contact-label { color: #E11D48; }
-
-        footer {
-            text-align: center;
-            font-size: 0.78rem;
-            color: #64748B;
-            margin-top: 0.4rem;
-        }
-
-        @media (max-width: 600px) {
-            .profile-card {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.2rem;
-            }
-            .motto {
-                border-left: none;
-                border-top: 3px solid #FF6B6B;
-                border-radius: 14px;
-            }
-            .grid-2, .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <main class="container">
-
-        <!-- 1. 個人照片與簡介 -->
-        <section class="card profile-card">
-            <div class="photo-frame">
-                <!-- 👇 把下方的 src 換成你的照片檔名（例如 me.jpg）或圖片網址即可 -->
-                <img src="https://placehold.co/400x400/FF8A65/FFFFFF?text=My+Photo" alt="張國榮 個人照片">
-            </div>
-
-            <div class="profile-info">
-                <div class="badge">✨ 開南大學 · 資訊管理學系</div>
-                <h1>張國榮 <span>Leslie</span></h1>
-                <p class="motto">「喜歡簡單生活，也喜歡認真對待每一件事。」</p>
-            </div>
-        </section>
-
-        <!-- 2. 技能與興趣 -->
-        <section class="grid-2">
-            <div class="card">
-                <h2 class="section-title"><i class="fa-solid fa-bolt" style="color:#F97316;"></i> 專業技能</h2>
-                <div class="skill-list">
-                    <div class="skill-item skill-1">
-                        <span>💻 寫代碼</span>
-                        <small>程式開發</small>
-                    </div>
-                    <div class="skill-item skill-2">
-                        <span>✍️ 內容編輯</span>
-                        <small>企劃排版</small>
-                    </div>
-                    <div class="skill-item skill-3">
-                        <span>💬 華語溝通</span>
-                        <small>團隊協作</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2 class="section-title"><i class="fa-solid fa-heart" style="color:#F43F5E;"></i> 生活興趣</h2>
-                <div class="hobby-grid">
-                    <div class="hobby-box hobby-movie">
-                        <i class="fa-solid fa-film"></i>
-                        <span>看電影</span>
-                    </div>
-                    <div class="hobby-box hobby-art">
-                        <i class="fa-solid fa-palette"></i>
-                        <span>畫幅畫</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. 聯繫方式 -->
-        <section class="card">
-            <h2 class="section-title"><i class="fa-solid fa-paper-plane" style="color:#0EA5E9;"></i> 聯繫方式</h2>
-            <div class="contact-grid">
-                <a href="mailto:magth7777@gmail.com" class="contact-item c-email">
-                    <span class="contact-label"><i class="fa-regular fa-envelope"></i> Email</span>
-                    <span class="contact-value">magth7777@gmail.com</span>
-                </a>
-
-                <div class="contact-item c-line">
-                    <span class="contact-label"><i class="fa-brands fa-line"></i> Line ID</span>
-                    <span class="contact-value">0809685436</span>
-                </div>
-
-                <a href="https://instagram.com/xicoz_eoz" target="_blank" rel="noopener noreferrer" class="contact-item c-ig">
-                    <span class="contact-label"><i class="fa-brands fa-instagram"></i> Instagram</span>
-                    <span class="contact-value">@xicoz_eoz ↗</span>
-                </a>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        © 2026 張國榮 Leslie Zhang · 開南大學資管系
-    </footer>
-
-</body>
-</html>
+        .btn-email { background: #EEF2FF; color: #4338CA; }
+        .btn-line  { background: #ECFDF5; color: #047857; }
+        .btn-ig    { background: linear-gradient(90deg, #FFF
